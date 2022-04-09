@@ -40,41 +40,47 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         //setContentView(R.layout.activity_main)
         setContentView(binding.root)
 
+        animateLogo()
+        login()
+        forgotPassword()
+        getQuote()
 
+    }
+
+    private fun getQuote() {
         // sign up button
         val sign_up_click = findViewById(R.id.SignUpNow) as TextView
-
-        // forgot password button
-        val forgot_pass_click = findViewById(R.id.forgotPwdTxt) as TextView
-
-        // sign in button
-        val sign_in_click: Button = findViewById(R.id.loginButton)
-
-        // logo
-        val logo: ImageView = findViewById(R.id.imageView6)
 
         // URL to get a quote
         val url = "https://jt-insurance.vercel.app/quote"
 
-        // logo animation
-        logo.animate().apply {
-            duration = 1000
-            rotationYBy(360f)
-        }.start()
-
-        // sign up on click listener
         sign_up_click.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(url)
             startActivity(i)
         }
+    }
 
-        // forgot password on click listener
+    private fun animateLogo() {
+        val logo: ImageView = findViewById(R.id.imageView6)
+
+        logo.animate().apply {
+            duration = 1000
+            rotationYBy(360f)
+        }.start()
+    }
+
+    private fun forgotPassword() {
+        val forgot_pass_click = findViewById(R.id.forgotPwdTxt) as TextView
+
         forgot_pass_click.setOnClickListener {
             val i = Intent(this@LoginActivity, ForgotPwdActivity::class.java)
             startActivity(i)
         }
-        
+    }
+
+    private fun login() {
+        val sign_in_click: Button = findViewById(R.id.loginButton)
 
         sign_in_click.setOnClickListener {
 
@@ -92,45 +98,46 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                     .show()
                 return@setOnClickListener
             }
-
-            val retrofit = Retrofit.Builder()
-                .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl("http://192.168.0.23:8080/")
-                .build()
-
-            val jsonPlaceHolderApi = retrofit.create(Api::class.java)
-            val myCall: Call<List<User>> = jsonPlaceHolderApi.getUsers()
-
-            myCall.enqueue(object: Callback<List<User>>{
-                override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
-                    val Users: List<User> = response.body()!!
-                    val stringBuilder = StringBuilder()
-                    var isLoggedIn: Boolean = true
-
-
-                    for (user in Users) {
-                        if (user.email == email && user.password == password) {
-                                val i = Intent(this@LoginActivity, MainActivity::class.java)
-                                startActivity(i)
-                                Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
-                        }
-                        if (user.email != email && user.password != password) {
-                            Toast.makeText(applicationContext, "Incorrect credentials.", Toast.LENGTH_SHORT).show()
-                        }
-                    }
-                }
-                override fun onFailure(call: Call<List<User>>, t: Throwable) {
-                    Log.e("Error", t.message.toString())
-                }
-
-            })
-
-            /*else {
-                val i = Intent(this@LoginActivity, MainActivity::class.java)
-                startActivity(i)
-            }*/
+            verifyApi()
         }
     }
 
+    private fun verifyApi() {
+        val retrofit = Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("http://192.168.0.23:8080/")
+            .build()
+
+        val jsonPlaceHolderApi = retrofit.create(Api::class.java)
+        val myCall: Call<List<User>> = jsonPlaceHolderApi.getUsers()
+
+        myCall.enqueue(object: Callback<List<User>>{
+            override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
+                val Users: List<User> = response.body()!!
+                val stringBuilder = StringBuilder()
+                var isLoggedIn: Boolean = true
+
+                val email = binding.editTextUsername.text.toString().trim()
+                val password = binding.editTextPassword.text.toString().trim()
+
+                for (user in Users) {
+                    if (user.email == email && user.password == password) {
+                        val i = Intent(this@LoginActivity, MainActivity::class.java)
+                        startActivity(i)
+                        Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
+                    }
+                    if (user.email != email && user.password != password) {
+                        Toast.makeText(applicationContext, "Incorrect credentials.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            override fun onFailure(call: Call<List<User>>, t: Throwable) {
+                Log.e("Error", t.message.toString())
+            }
+
+        })
+    }
 
 }
+
+

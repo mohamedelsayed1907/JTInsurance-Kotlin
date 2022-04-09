@@ -145,29 +145,19 @@
             app:layout_constraintVertical_bias="0.581"
             app:srcCompat="@drawable/ic_baseline_local_car_wash_24" />
 
-        <View
-            android:id="@+id/divider2"
-            android:layout_width="409dp"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView8"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewAutoInsurance"
-            app:layout_constraintVertical_bias="0.314" />
-
         <TextView
             android:id="@+id/getAnotherQuote"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
             android:text="GET ANOTHER QUOTE"
             android:textColor="@color/black"
             android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.245"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/divider2" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.75" />
 
         <ImageView
             android:id="@+id/imageView11"
@@ -216,6 +206,18 @@
             app:layout_constraintTop_toTopOf="@+id/divider4"
             app:layout_constraintVertical_bias="0.336"
             app:srcCompat="@drawable/ic_baseline_cloud_24" />
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="409dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.658" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

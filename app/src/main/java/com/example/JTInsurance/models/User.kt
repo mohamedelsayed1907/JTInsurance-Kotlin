@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.util.*
 
 data class User(
-    val id: Int,
+    var id: Int,
     val firstName: String,
     val lastName: String,
     val email: String,
@@ -19,4 +19,5 @@ data class User(
     val vehicleQuotes: Array<VehicleQuotes>,
     val homePolicy: String,
     val vehiclePolicy: String
-)
+) {
+}

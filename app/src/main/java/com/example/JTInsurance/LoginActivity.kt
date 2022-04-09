@@ -47,6 +47,10 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
 
     }
 
+    companion object {
+        var userId: Int = 0
+    }
+
     private fun getQuote() {
         // sign up button
         val sign_up_click = findViewById(R.id.SignUpNow) as TextView
@@ -102,6 +106,8 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
+
+
     private fun verifyApi() {
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -111,25 +117,28 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         val jsonPlaceHolderApi = retrofit.create(Api::class.java)
         val myCall: Call<List<User>> = jsonPlaceHolderApi.getUsers()
 
+
+
         myCall.enqueue(object: Callback<List<User>>{
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 val Users: List<User> = response.body()!!
-                val stringBuilder = StringBuilder()
-                var isLoggedIn: Boolean = true
 
                 val email = binding.editTextUsername.text.toString().trim()
                 val password = binding.editTextPassword.text.toString().trim()
 
                 for (user in Users) {
                     if (user.email == email && user.password == password) {
+                        userId = user.id
                         val i = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(i)
                         Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()
                     }
+
                     if (user.email != email && user.password != password) {
                         Toast.makeText(applicationContext, "Incorrect credentials.", Toast.LENGTH_SHORT).show()
                     }
                 }
+
             }
             override fun onFailure(call: Call<List<User>>, t: Throwable) {
                 Log.e("Error", t.message.toString())

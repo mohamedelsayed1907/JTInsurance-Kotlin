@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="220dp"
+    android:background="@drawable/header"
+    tools:context=".LoginActivity">
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="JOSH TAYLOR"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/white"
+        android:id="@+id/name">
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="Josh.Taylor@ed.cna.nl.ca"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/white"
+        android:id="@+id/userEmail">
+    </TextView>
+
+
+
+</RelativeLayout>

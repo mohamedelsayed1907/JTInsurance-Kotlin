@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "819184883168",
+    "project_id": "jtinsurance-96294",
+    "storage_bucket": "jtinsurance-96294.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:819184883168:android:81f18eacb735ae79348785",
+        "android_client_info": {
+          "package_name": "com.example.JTInsurance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "819184883168-06ijfgrj2cvskn3heriqqespm1e458m2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyZoFeKZyV5RE7LUIlMP4fIXnlH7Sc1kY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "819184883168-06ijfgrj2cvskn3heriqqespm1e458m2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

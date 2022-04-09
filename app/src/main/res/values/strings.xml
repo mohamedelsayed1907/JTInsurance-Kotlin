@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">JT Insurance</string>
+    <string name="open">Open</string>
+    <string name="close">Open</string>
+    <string name="viewHomePolicy">VIEW HOME POLICY</string>
+    <string name="viewCarPolicy">VIEW VEHICLE POLICY</string>
+    <string name="getQuote">GET ANOTHER QUOTE</string>
+    <string name="tip">TIPS ON SAVING MONEY</string>
+    <string name="remember_me">Remember me</string>
+    <string name="getQuoteLogin">
+        <u>Get A Quote Now</u>
+    </string>
+</resources>

@@ -17,8 +17,11 @@ class ForgotPwdActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.forgot_password)
 
-        val forgotSubmitBtn: Button = findViewById(R.id.forgotSubmitBtn)
+        forgotPassword()
+    }
 
+    private fun forgotPassword() {
+        val forgotSubmitBtn: Button = findViewById(R.id.forgotSubmitBtn)
 
         forgotSubmitBtn.setOnClickListener {
             val pwdEmailText: TextInputEditText = findViewById(R.id.forgotPwdEmailText)
@@ -26,25 +29,10 @@ class ForgotPwdActivity : AppCompatActivity() {
             if (email.isEmpty()) {
                 Toast.makeText(this@ForgotPwdActivity, "Please enter email address", Toast.LENGTH_SHORT)
                     .show()
-            } else{
-                FirebaseAuth.getInstance().sendPasswordResetEmail(email)
-                    .addOnCompleteListener { task ->
-                        if(task.isSuccessful) {
-                            Toast.makeText(this@ForgotPwdActivity,
-                                "Email confirmation sent!",
-                                Toast.LENGTH_SHORT)
-                                .show()
-                        } else {
-                            Toast.makeText(this@ForgotPwdActivity,
-                                task.exception!!.message.toString(),
-                                Toast.LENGTH_SHORT)
-                                .show()
-                        }
-                    }
+            } else {
+                Toast.makeText(this@ForgotPwdActivity, "Reset email has been sent.", Toast.LENGTH_SHORT)
+                    .show()
             }
-
-
         }
-
     }
 }

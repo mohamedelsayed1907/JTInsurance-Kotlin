@@ -9,42 +9,38 @@
     tools:context=".LoginActivity">
 
 
-
     <TextView
+        android:id="@+id/welcome"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/bellota_text"
         android:text="Welcome,"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="20dp"
         android:textColor="@color/white"
-        android:id="@+id/welcome">
-    </TextView>
+        android:textSize="20dp" />
 
     <TextView
+        android:id="@+id/firstName"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text=""
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_marginTop="50dp"
         android:layout_marginLeft="120dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/bellota_text"
+        android:text=""
         android:textColor="@color/white"
-        android:id="@+id/firstName">
-    </TextView>
+        android:textSize="20dp" />
 
     <TextView
+        android:id="@+id/userEmail"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:text="Josh.Taylor@ed.cna.nl.ca"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:layout_marginTop="80dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/bellota_text"
+        android:text="Josh.Taylor@ed.cna.nl.ca"
         android:textColor="@color/white"
-        android:id="@+id/userEmail">
-    </TextView>
+        android:textSize="20dp" />
 
 
 

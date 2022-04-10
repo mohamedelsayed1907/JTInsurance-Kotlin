@@ -3,11 +3,20 @@
     <string name="open">Open</string>
     <string name="close">Open</string>
     <string name="viewHomePolicy">VIEW HOME POLICY</string>
-    <string name="viewCarPolicy">VIEW VEHICLE POLICY</string>
+    <string name="viewCarPolicy">VIEW AUTO POLICY</string>
     <string name="getQuote">GET ANOTHER QUOTE</string>
     <string name="tip">TIPS ON SAVING MONEY</string>
     <string name="remember_me">Remember me</string>
-    <string name="getQuoteLogin">
-        <u>Get A Quote Now</u>
-    </string>
+    <string name="getQuoteLogin"><u>Get A Quote Now</u></string>
+
+    <string name="Howcanwehelp">How can we help you?</string>
+    <string name="Forgotpassword">Forgot password?</string>
+    <string name="NotAClient">Not A Client?</string>
+    <string name="GetAQuote">Get A Quote Now</string>
+
+    <string name="SubmitBtn">SUBMIT</string>
+    <string name="enterEmailToReset">Enter e-mail below to reset your password!</string>
+    <string name="Remember">Remember me</string>
+
+
 </resources>

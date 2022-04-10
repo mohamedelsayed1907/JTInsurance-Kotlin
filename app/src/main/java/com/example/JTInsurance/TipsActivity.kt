@@ -12,16 +12,14 @@ class TipsActivity: AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.vehicle_tip_1)
-
-        // get another tip button
-        val getAnotherTip: Button = findViewById(R.id.getAnotherTip1)
-
-        // click listener for getting another tip
-        getAnotherTip.setOnClickListener {
-            setContentView(R.layout.vehicle_tip_2)
-        }
+        tips()
 
     }
 
-
+    private fun tips() {
+        val getAnotherTip: Button = findViewById(R.id.getAnotherTip1)
+        getAnotherTip.setOnClickListener {
+            setContentView(R.layout.vehicle_tip_2)
+        }
+    }
 }

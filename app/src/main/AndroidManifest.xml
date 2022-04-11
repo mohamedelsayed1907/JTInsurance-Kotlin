@@ -39,7 +39,16 @@
         <activity
             android:name="com.example.JTInsurance.TipsActivity"
             android:exported="true">
+        </activity>
 
+        <activity
+            android:name="com.example.JTInsurance.CustomerInfoActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name="com.example.JTInsurance.ContactUsActivity"
+            android:exported="true">
         </activity>
 
         <meta-data

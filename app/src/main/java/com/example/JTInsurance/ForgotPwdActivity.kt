@@ -10,10 +10,7 @@ import com.google.firebase.auth.FirebaseAuth
 class ForgotPwdActivity : AppCompatActivity() {
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
-        var mAuth = FirebaseAuth.getInstance();
         super.onCreate(savedInstanceState)
         setContentView(R.layout.forgot_password)
 

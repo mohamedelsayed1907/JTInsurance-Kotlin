@@ -44,22 +44,25 @@ class MainActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         hamburgerMenu()
-        title()
+        userTitle()
+        tipsButton()
 
     }
 
-
-
-    private fun hamburgerMenu() {
-        val drawerLayout: DrawerLayout = findViewById(com.example.JTInsurance.R.id.drawerLayout)
-        val navView: NavigationView = findViewById(com.example.JTInsurance.R.id.nav_view)
+    private fun tipsButton() {
         val tipsBtn: TextView = findViewById(com.example.JTInsurance.R.id.tipsSavingMoney)
-        val burger: ImageView = findViewById(com.example.JTInsurance.R.id.hamburgerMenu)
 
         tipsBtn.setOnClickListener {
             val i = Intent(this@MainActivity, TipsActivity::class.java)
             startActivity(i)
         }
+    }
+
+    private fun hamburgerMenu() {
+        val drawerLayout: DrawerLayout = findViewById(com.example.JTInsurance.R.id.drawerLayout)
+        val navView: NavigationView = findViewById(com.example.JTInsurance.R.id.nav_view)
+
+        val burger: ImageView = findViewById(com.example.JTInsurance.R.id.hamburgerMenu)
 
         toggle = ActionBarDrawerToggle(this, drawerLayout, com.example.JTInsurance.R.string.open, com.example.JTInsurance.R.string.close)
         toggle.isDrawerIndicatorEnabled = true
@@ -68,21 +71,20 @@ class MainActivity: AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                com.example.JTInsurance.R.id.home -> Toast.makeText(
-                    applicationContext,
-                    "Clicked home",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-
                 com.example.JTInsurance.R.id.logOut ->
                     startActivity(Intent(this@MainActivity, LoginActivity::class.java))
+
+                com.example.JTInsurance.R.id.contactus ->
+                    startActivity(Intent(this@MainActivity, ContactUsActivity::class.java))
+
+                com.example.JTInsurance.R.id.myProfile ->
+                    startActivity(Intent(this@MainActivity, CustomerInfoActivity::class.java))
             }
             true
         }
     }
 
-    private fun title() {
+    private fun userTitle() {
         val retrofit = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("http://192.168.0.23:8080/")

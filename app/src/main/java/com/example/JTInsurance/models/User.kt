@@ -9,6 +9,7 @@ data class User(
     val lastName: String,
     val email: String,
     val password: String,
+    val phone: String,
     val dob: Date,
     val address: String,
     val city: String,

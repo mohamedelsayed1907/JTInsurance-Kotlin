@@ -5,17 +5,19 @@ import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
-import com.example.JTInsurance.api.Api
 import com.example.JTInsurance.databinding.LoginMainBinding
-import com.example.JTInsurance.models.LoginResponse
 import com.example.JTInsurance.models.User
-import com.google.gson.JsonObject
-import kotlinx.coroutines.*
-import okhttp3.ResponseBody
+import com.example.JTInsurance.repository.InsuranceRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -83,6 +85,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
         }
     }
 
+
     private fun login() {
         val sign_in_click: Button = findViewById(R.id.loginButton)
 
@@ -102,23 +105,27 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
                     .show()
                 return@setOnClickListener
             }
+            Toast.makeText(applicationContext, "Logging in...", Toast.LENGTH_LONG)
+                .show()
+
             verifyApi()
         }
     }
 
 
 
+    //
     private fun verifyApi() {
-        val retrofit = Retrofit.Builder()
+        val requestBuilder = Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("http://192.168.0.23:8080/")
             .build()
 
-        val jsonPlaceHolderApi = retrofit.create(Api::class.java)
-        val myCall: Call<List<User>> = jsonPlaceHolderApi.getUsers()
+        val insuranceRepository = requestBuilder.create(InsuranceRepository::class.java)
+        val myCall: Call<List<User>> = insuranceRepository.getUsers()
 
 
-
+        //
         myCall.enqueue(object: Callback<List<User>>{
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 val Users: List<User> = response.body()!!
@@ -128,7 +135,7 @@ class LoginActivity : AppCompatActivity(), CoroutineScope {
 
                 for (user in Users) {
                     if (user.email == email && user.password == password) {
-                        userId = user.id
+                        userId = user.custid
                         val i = Intent(this@LoginActivity, MainActivity::class.java)
                         startActivity(i)
                         Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_SHORT).show()

@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.JTInsurance.api.Api
-import com.example.JTInsurance.databinding.ContactUsBinding
+import com.example.JTInsurance.repository.InsuranceRepository
 import com.example.JTInsurance.databinding.CustomerInfoBinding
 import com.example.JTInsurance.models.User
 import retrofit2.Call
@@ -27,6 +27,12 @@ class CustomerInfoActivity : AppCompatActivity() {
 
         getApi()
         mainPageButton()
+        pleaseWaitToast()
+    }
+
+    private fun pleaseWaitToast() {
+        Toast.makeText(applicationContext, "Displaying info... please wait...", Toast.LENGTH_LONG)
+            .show()
     }
 
     private fun getApi() {
@@ -35,7 +41,7 @@ class CustomerInfoActivity : AppCompatActivity() {
             .baseUrl("http://192.168.0.23:8080/")
             .build()
 
-        val jsonPlaceHolderApi = retrofit.create(Api::class.java)
+        val jsonPlaceHolderApi = retrofit.create(InsuranceRepository::class.java)
         val myCall: Call<List<User>> = jsonPlaceHolderApi.getUsers()
 
         myCall.enqueue(object: Callback<List<User>> {
@@ -47,14 +53,13 @@ class CustomerInfoActivity : AppCompatActivity() {
                 val lastName: TextView = findViewById(R.id.customerLastName)
                 val regEmail: TextView = findViewById(R.id.customerEmail)
                 var phoneNumber: TextView = findViewById(R.id.customerPhoneNumber)
-                var accidentRcrd: TextView = findViewById(R.id.accidentRecord)
+                var accidentRcrd: TextView = findViewById(R.id.customerAccidents)
                 var streetAddress: TextView = findViewById(R.id.customerStreet)
                 var city: TextView = findViewById(R.id.customerCity)
                 var province: TextView = findViewById(R.id.customerProvince)
-                var postalCode: TextView = findViewById(R.id.customerPostalCode)
 
                 for (user in Users) {
-                    if (user.id == LoginActivity.userId) {
+                    if (user.custid == LoginActivity.userId) {
                         firstName.text = user.firstName
                         lastName.text = user.lastName
                         regEmail.text = user.email
@@ -63,7 +68,6 @@ class CustomerInfoActivity : AppCompatActivity() {
                         streetAddress.text = user.address
                         city.text = user.city
                         province.text = user.province
-                        postalCode.text = user.postalcode
                     }
                 }
             }

@@ -1,34 +1,26 @@
 package com.example.JTInsurance
 
-import android.R
-import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.ClipData
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.view.Window
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import com.example.JTInsurance.LoginActivity.Companion.userId
-import com.example.JTInsurance.api.Api
+import com.example.JTInsurance.repository.InsuranceRepository
 import com.example.JTInsurance.databinding.ActivityMainBinding
-import com.example.JTInsurance.databinding.LoginMainBinding
 import com.example.JTInsurance.models.User
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.textfield.TextInputEditText
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.nio.file.Files.find
 
 
 class MainActivity: AppCompatActivity() {
@@ -46,6 +38,9 @@ class MainActivity: AppCompatActivity() {
         hamburgerMenu()
         userTitle()
         tipsButton()
+        getAnotherQuote()
+        getHomeInsurance()
+        getAutoInsurance()
 
     }
 
@@ -54,6 +49,24 @@ class MainActivity: AppCompatActivity() {
 
         tipsBtn.setOnClickListener {
             val i = Intent(this@MainActivity, TipsActivity::class.java)
+            startActivity(i)
+        }
+    }
+
+    private fun getHomeInsurance() {
+        val insuranceBtn: TextView = findViewById(com.example.JTInsurance.R.id.viewHomeInsurance)
+
+        insuranceBtn.setOnClickListener {
+            val i = Intent(this@MainActivity, HomePolicyActivity::class.java)
+            startActivity(i)
+        }
+    }
+
+    private fun getAutoInsurance() {
+        val autoInsuranceBtn: TextView = findViewById(com.example.JTInsurance.R.id.viewAutoInsurance)
+
+        autoInsuranceBtn.setOnClickListener {
+            val i = Intent(this@MainActivity, AutoPolicyActivity::class.java)
             startActivity(i)
         }
     }
@@ -79,6 +92,7 @@ class MainActivity: AppCompatActivity() {
 
                 com.example.JTInsurance.R.id.myProfile ->
                     startActivity(Intent(this@MainActivity, CustomerInfoActivity::class.java))
+
             }
             true
         }
@@ -90,7 +104,7 @@ class MainActivity: AppCompatActivity() {
             .baseUrl("http://192.168.0.23:8080/")
             .build()
 
-        val jsonPlaceHolderApi = retrofit.create(Api::class.java)
+        val jsonPlaceHolderApi = retrofit.create(InsuranceRepository::class.java)
         val myCall: Call<List<User>> = jsonPlaceHolderApi.getUsers()
 
         myCall.enqueue(object: Callback<List<User>> {
@@ -101,7 +115,7 @@ class MainActivity: AppCompatActivity() {
                 val email: TextView = findViewById(com.example.JTInsurance.R.id.userEmail)
 
                 for (user in Users) {
-                    if (user.id == userId) {
+                    if (user.custid == userId) {
                         firstName.text = user.firstName
                         email.text = user.email
                     }
@@ -113,6 +127,20 @@ class MainActivity: AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun getAnotherQuote() {
+            // sign up button
+            val get_another_quote = findViewById(com.example.JTInsurance.R.id.getAnotherQuote) as TextView
+
+            // URL to get a quote
+            val url = "https://jt-insurance.vercel.app/quote"
+
+            get_another_quote.setOnClickListener {
+                val i = Intent(Intent.ACTION_VIEW)
+                i.data = Uri.parse(url)
+                startActivity(i)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -3,12 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/activity_main.xml" value="0.1940700808625337" />
+        <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/auto_policy.xml" value="0.15443840579710144" />
         <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/contact_us.xml" value="0.264" />
-        <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/customer_info.xml" value="0.264" />
+        <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/customer_info.xml" value="0.25435540069686413" />
         <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/forgot_password.xml" value="0.24728260869565216" />
+        <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/home_policy.xml" value="0.264" />
         <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/login_main.xml" value="0.1" />
         <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/nav_header.xml" value="0.176" />
+        <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/vehicle.xml" value="0.10055724417426545" />
+        <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/vehicle_policy.xml" value="0.2" />
         <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/vehicle_tip_1.xml" value="0.264" />
         <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/layout/vehicle_tip_2.xml" value="0.264" />
         <entry key="..\:/Kotlin/JTInsurance/app/src/main/res/menu/nav_menu.xml" value="0.20272108843537415" />
